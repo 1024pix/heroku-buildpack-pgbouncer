@@ -60,15 +60,13 @@ cat "$CONFIG_DIR/pgbouncer.ini"
 
 function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 
-eval POSTGRES_URL_VALUE="\$$POSTGRES_URL"
-
-if [ -z "$POSTGRES_URL_VALUE" ]
+if [ -z "$POSTGRES_URL" ]
 then
 echo "$POSTGRES_URL is empty. Exiting..."
 exit 1
 fi
 
-IFS=':' read -r DB_USER DB_PASS DB_HOST DB_PORT DB_NAME <<< "$(echo "$POSTGRES_URL_VALUE" | perl -lne 'print "$1:$2:$3:$4:$5" if /^postgres(?:ql)?:\/\/([^:]*):([^@]*)@(.*?):(.*?)\/(.*?)$/')"
+IFS=':' read -r DB_USER DB_PASS DB_HOST DB_PORT DB_NAME <<< "$(echo "$POSTGRES_URL" | perl -lne 'print "$1:$2:$3:$4:$5" if /^postgres(?:ql)?:\/\/([^:]*):([^@]*)@(.*?):(.*?)\/(.*?)$/')"
 
 # We can ignore DB_NAME as this isn't strictly required.
 CONN_STRING_PARTS=("$DB_USER" "$DB_PASS" "$DB_HOST" "$DB_PORT")
