@@ -90,6 +90,7 @@ echo "Setting DATABASE_URL_PGBOUNCER config var"
 
 export DATABASE_URL_PGBOUNCER=postgres://"$DB_USER":"$DB_PASS"@127.0.0.1:6000/$CLIENT_DB_NAME
 
+touch "$CONFIG_DIR/users.txt"
 cat >> "$CONFIG_DIR/users.txt" << EOFEOF
 "$DECODED_DB_USER" "$DECODED_DB_PASS"
 EOFEOF
