@@ -86,14 +86,9 @@ DECODED_DB_PASS="$(urldecode "$DB_PASS")"
 
 CLIENT_DB_NAME="db0"
 
-echo "Setting ${POSTGRES_URL}_PGBOUNCER config var"
+echo "Setting DATABASE_URL_PGBOUNCER config var"
 
-if [ "$PGBOUNCER_PREPARED_STATEMENTS" == "false" ]
-then
-export "${POSTGRES_URL}"_PGBOUNCER=postgres://"$DB_USER":"$DB_PASS"@127.0.0.1:6000/$CLIENT_DB_NAME?prepared_statements=false
-else
-export "${POSTGRES_URL}"_PGBOUNCER=postgres://"$DB_USER":"$DB_PASS"@127.0.0.1:6000/$CLIENT_DB_NAME
-fi
+export DATABASE_URL_PGBOUNCER=postgres://"$DB_USER":"$DB_PASS"@127.0.0.1:6000/$CLIENT_DB_NAME
 
 cat >> "$CONFIG_DIR/users.txt" << EOFEOF
 "$DECODED_DB_USER" "$DECODED_DB_PASS"
