@@ -74,6 +74,7 @@ IFS=':' read -r DB_USER DB_PASS DB_HOST DB_PORT DB_NAME <<< "$(echo "$POSTGRES_U
 CONN_STRING_PARTS=("$DB_USER" "$DB_PASS" "$DB_HOST" "$DB_PORT")
 for CONN_STRING_PART in "${CONN_STRING_PARTS[@]}"
 do
+echo "$CONN_STRING_PART"
 if [ -z "$CONN_STRING_PART" ]
 then
     # Don't dump the config variable value, only refer to it.
