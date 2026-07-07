@@ -22,6 +22,7 @@ echo "-----> pgbouncer-buildpack: Installed pgbouncer ${pgbouncer_version}"
 
 
 echo "-----> pgbouncer-buildpack: Creating pgbouncer.ini in $CONFIG_DIR"
+touch "$CONFIG_DIR/pgbouncer.ini"
 cat >> "$CONFIG_DIR/pgbouncer.ini" << EOFEOF
 [pgbouncer]
 listen_addr = 127.0.0.1
