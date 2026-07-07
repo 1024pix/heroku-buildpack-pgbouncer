@@ -22,6 +22,10 @@ echo "-----> pgbouncer-buildpack: Installed pgbouncer ${pgbouncer_version}"
 
 
 echo "-----> pgbouncer-buildpack: Creating pgbouncer.ini in $CONFIG_DIR"
+whereis pgbouncer
+echo $HOME
+pwd
+ls
 touch "$CONFIG_DIR/pgbouncer.ini"
 cat >> "$CONFIG_DIR/pgbouncer.ini" << EOFEOF
 [pgbouncer]
