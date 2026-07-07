@@ -25,7 +25,7 @@ echo "-----> pgbouncer-buildpack: Creating pgbouncer.ini in $CONFIG_DIR"
 touch "$CONFIG_DIR/pgbouncer.ini"
 cat >> "$CONFIG_DIR/pgbouncer.ini" << EOFEOF
 [pgbouncer]
-listen_addr = 127.0.0.1
+listen_addr = 0.0.0.0
 listen_port = 6000
 auth_type = ${PGBOUNCER_AUTH_TYPE:-scram-sha-256}
 auth_file = /app/users.txt
