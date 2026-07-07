@@ -14,7 +14,7 @@ unset GIT_DIR
 BUILD_DIR=$1
 CACHE_DIR=$2
 BUILDPACK_DIR="$(dirname "$(dirname "$0")")"
-CONFIG_DIR="~"
+CONFIG_DIR="$HOME"
 
 echo "-----> pgbouncer-buildpack: Vendoring pgbouncer into slug"
 pgbouncer_version=$(pgbouncer -V 2>&1 | head -1 | awk '{ print $NF }')
@@ -22,10 +22,6 @@ echo "-----> pgbouncer-buildpack: Installed pgbouncer ${pgbouncer_version}"
 
 
 echo "-----> pgbouncer-buildpack: Creating pgbouncer.ini in $CONFIG_DIR"
-whereis pgbouncer
-echo $HOME
-pwd
-ls
 touch "$CONFIG_DIR/pgbouncer.ini"
 cat >> "$CONFIG_DIR/pgbouncer.ini" << EOFEOF
 [pgbouncer]
